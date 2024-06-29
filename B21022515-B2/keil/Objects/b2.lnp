@@ -1,0 +1,9 @@
+".\Objects\STARTUP.obj",
+".\Objects\b2.obj",
+".\Objects\lcd.obj",
+".\Objects\delay.obj",
+".\Objects\key.obj",
+".\Objects\uart.obj",
+".\Objects\xor.obj" 
+TO ".\Objects\b2" 
+PRINT(".\Listings\b2.m51") RAMSIZE(256) 

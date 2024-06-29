@@ -1,0 +1,46 @@
+C51 COMPILER V9.57.0.0   B1N                                                               06/23/2024 11:37:09 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE B1N
+OBJECT MODULE PLACED IN .\Objects\b1n.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE b1n.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\b1n.l
+                    -st) TABS(2) OBJECT(.\Objects\b1n.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include "lcd.h"
+   3          #include "key.h"
+   4          #include "cal.h"
+   5          
+   6          char keyMap[16] = {'7', '8', '9', '/', '4', '5', '6', 'X', '1', '2', '3', '-', 'C', '0', '=', '+'};
+   7          
+   8          void main()
+   9          {
+  10   1        unsigned char result;
+  11   1        P1=0xff;
+  12   1        LCD_Init();
+  13   1        //LCD_ShowString(1,2,"abc");
+  14   1          while(1) {
+  15   2              result = Matrixkey_Scan();
+  16   2              if (result != 0) {
+  17   3                //LCD_ShowString(0,1,"abc");
+  18   3              Calculator(keyMap[(result-1)]);
+  19   3              }
+  20   2          }
+  21   1      
+  22   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     25    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     16       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

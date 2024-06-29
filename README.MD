@@ -1,0 +1,3 @@
+A类程序使用python编写，运行代码时要用pip安装对应包
+pip install tkinter, pandas
+也可直接使用文件夹内编译好的exe运行

@@ -1,0 +1,1 @@
+"trans.c" OPTIMIZE (8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\trans.lst) TABS (2) OBJECT(.\Objects\trans.obj)

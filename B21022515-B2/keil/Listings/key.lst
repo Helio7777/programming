@@ -1,0 +1,73 @@
+C51 COMPILER V9.57.0.0   KEY                                                               06/21/2024 18:50:07 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE KEY
+OBJECT MODULE PLACED IN .\Objects\key.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE key.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\key.l
+                    -st) TABS(2) OBJECT(.\Objects\key.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include "key.h"
+   3          #include "delay.h"
+   4          
+   5          
+   6          unsigned char Matrixkey_Scan(void)
+   7          {
+   8   1        unsigned char temp,row=0,col=0,i=0;
+   9   1        Matrixkey_Port=0x0f;
+  10   1        delay_us(1);
+  11   1        temp=Matrixkey_Port;
+  12   1        if(temp!=0x0f)
+  13   1        {
+  14   2          if(temp==0x0e)row=1;
+  15   2          else if(temp==0x0d)row=2;
+  16   2          else if(temp==0x0b)row=3;
+  17   2          else if(temp==0x07)row=4;
+  18   2          Matrixkey_Port=0xff;
+  19   2          delay_us(1);
+  20   2          Matrixkey_Port=0xf0;
+  21   2          delay_us(1);
+  22   2          temp=Matrixkey_Port;
+  23   2          //if(temp!=0xf0)
+  24   2            if(temp==0xe0) col=1;
+  25   2          else if(temp==0xd0)col=2;
+  26   2          else if(temp==0xb0)col=3;
+  27   2          else if(temp==0x70)col=4;
+  28   2            /*switch(temp)
+  29   2            {
+  30   2              case 0xe0:col=1;break;
+  31   2              case 0xd0:col=2;break;
+  32   2              case 0xb0:col=3;break;
+  33   2              case 0x70:col=4;break;
+  34   2              default:break;
+  35   2            }*/
+  36   2            while(Matrixkey_Port!=0xf0&&i<255)
+  37   2            {
+  38   3              delay_us(1000);
+  39   3              i++;
+  40   3            }
+  41   2          }
+  42   1          if(row!=0&&col!=0)
+  43   1              //return 1;
+  44   1          return ((row-1)*4+col);
+  45   1          else
+  46   1            return 0;
+  47   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    151    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+C51 COMPILER V9.57.0.0   KEY                                                               06/21/2024 18:50:07 PAGE 2   
+
+   DATA SIZE        =   ----       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

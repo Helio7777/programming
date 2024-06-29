@@ -1,0 +1,62 @@
+C51 COMPILER V9.57.0.0   XOR                                                               06/21/2024 18:50:08 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE XOR
+OBJECT MODULE PLACED IN .\Objects\xor.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE xor.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\xor.l
+                    -st) TABS(2) OBJECT(.\Objects\xor.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include "xor.h"
+   3          void XOR_EncryptDecrypt(unsigned char* data1, unsigned char* key, unsigned int data_length, unsigned int k
+             -ey_length)
+   4          {
+   5   1          unsigned int i;
+   6   1          for (i = 0; i < data_length; i++)
+   7   1          {
+   8   2              data1[i] ^= key[i % key_length];
+   9   2          }
+  10   1      }
+  11          void append_char_to_string(char c, char* str) {
+  12   1          int len = 0;
+  13   1      
+  14   1          // Find the current end of the string
+  15   1          while(str[len] != '\0') {
+  16   2              len++;
+  17   2          }
+  18   1      
+  19   1          // Add the new character to the end of the string
+  20   1          str[len] = c;
+  21   1      
+  22   1          // Null terminate the new string
+  23   1          str[len+1] = '\0';
+  24   1      }
+  25          
+  26          unsigned int StringLength(unsigned char *str)
+  27          {
+  28   1          unsigned int length = 0;
+  29   1      
+  30   1          // 遍历字符串，直到遇到结束符'\0'
+  31   1          while(str[length] != '\0')
+  32   1          {
+  33   2              length++;
+  34   2          }
+  35   1      
+  36   1          return length;
+  37   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    183    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      19
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,63 @@
+C51 COMPILER V9.57.0.0   SCAN                                                              06/20/2024 15:22:47 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE SCAN
+OBJECT MODULE PLACED IN .\Objects\scan.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE scan.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\scan
+                    -.lst) TABS(2) OBJECT(.\Objects\scan.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include "scan.h"
+   3          #include "delay.h"
+   4          // Define your key mapping here. This is just an example.
+   5          #define KeyPort P1
+   6          
+   7          // 声明函数
+   8          void delay(unsigned int time);
+   9          unsigned char KeyScan();
+  10          
+  11          // 延时函数
+  12          void delay(int z)  
+  13          {
+*** WARNING C235 IN LINE 13 OF scan.c: parameter 1: different types
+  14   1        int x,y;
+  15   1        for(x=z;x>0;x--)
+  16   1          for(y=114;y>0;y--);
+  17   1      }
+  18          
+  19          unsigned char key_scan()
+  20          {
+  21   1        char value_h,value_l;
+  22   1        unsigned char key;
+  23   1        P1 = 0xF0;
+  24   1        if(P1 != 0xF0){
+  25   2          P1 = 0xF0;
+  26   2          value_l = P1;
+  27   2          delay(10); //按键消抖
+  28   2          P1 = 0x0F;
+  29   2          delay(10);
+  30   2          value_h = P1;
+  31   2          
+  32   2          key = value_l+value_h; //得到键值
+  33   2        }
+  34   1        P1 = 0xF0;
+  35   1        
+  36   1        //key_press = 1;
+  37   1        return key;
+  38   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     74    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

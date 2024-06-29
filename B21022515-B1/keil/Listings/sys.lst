@@ -1,0 +1,63 @@
+C51 COMPILER V9.57.0.0   SYS                                                               06/19/2024 18:48:43 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE SYS
+OBJECT MODULE PLACED IN .\Objects\sys.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE sys.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\sys.l
+                    -st) TABS(2) OBJECT(.\Objects\sys.obj)
+
+line level    source
+
+   1          #include "sys.h"  
+*** WARNING C318 IN LINE 3 OF sys.h: can't open file 'stm32f4xx.h'
+*** ERROR C141 IN LINE 78 OF sys.h: syntax error near 'addr', expected ')'
+   2          //////////////////////////////////////////////////////////////////////////////////   
+   3          //本程序只供学习使用，未经作者许可，不得用于其它任何用途
+   4          //STM32F407开发板
+   5          //系统时钟初始化 
+   6          //包括时钟设置/中断管理/GPIO设置等
+   7          
+   8          //********************************************************************************
+   9          //修改说明
+  10          //无
+  11          //////////////////////////////////////////////////////////////////////////////////  
+  12          
+  13          
+  14          //THUMB指令不支持汇编内联
+  15          //采用如下方法实现执行汇编指令WFI  
+  16          __asm void WFI_SET(void)
+*** ERROR C141 IN LINE 16 OF sys.c: syntax error near '__asm'
+  17          {
+  18   1        WFI;      
+*** ERROR C202 IN LINE 18 OF sys.c: 'WFI': undefined identifier
+  19   1      }
+  20          //关闭所有中断(但是不包括fault和NMI中断)
+  21          __asm void INTX_DISABLE(void)
+*** ERROR C141 IN LINE 21 OF sys.c: syntax error near '__asm'
+  22          {
+  23   1        CPSID   I
+*** ERROR C202 IN LINE 23 OF sys.c: 'CPSID': undefined identifier
+*** ERROR C141 IN LINE 23 OF sys.c: syntax error near 'I'
+  24   1        BX      LR    
+  25   1      }
+  26          //开启所有中断
+  27          __asm void INTX_ENABLE(void)
+*** ERROR C141 IN LINE 27 OF sys.c: syntax error near '__asm'
+  28          {
+  29   1        CPSIE   I
+*** ERROR C141 IN LINE 29 OF sys.c: syntax error near 'I'
+  30   1        BX      LR  
+  31   1      }
+  32          //设置栈顶地址
+  33          //addr:栈顶地址
+  34          __asm void MSR_MSP(u32 addr) 
+*** ERROR C141 IN LINE 34 OF sys.c: syntax error near '__asm'
+*** ERROR C141 IN LINE 34 OF sys.c: syntax error near 'addr', expected ')'
+  35          {
+  36   1        MSR MSP, r0       //set Main Stack value
+*** ERROR C141 IN LINE 36 OF sys.c: syntax error near 'MSP'
+  37   1        BX r14
+*** ERROR C141 IN LINE 37 OF sys.c: syntax error near 'BX'
+  38   1      }
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  12 ERROR(S)
